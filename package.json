@@ -1,0 +1,31 @@
+{
+  "name": "jwt-auth-example",
+  "version": "1.0.0",
+  "description": "A sample application using jwt tokens for authentication",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-debug": "DEBUG=express* node index.js",
+    "lint": "standard --verbose | snazzy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jwt",
+    "nodejs",
+    "auth",
+    "web"
+  ],
+  "author": "Vivek Poddar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "morgan": "^1.8.2",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "supertest": "^3.0.0"
+  }
+}
