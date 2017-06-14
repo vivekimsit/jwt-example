@@ -1,7 +1,8 @@
 'use strict'
 
 const config = require('./config')
-const repository = require('./repository/movie')
+const movieRepo = require('./repository/movie')
+const userRepo = require('./repository/user')
 const server = require('./server')
 const database = require('./db')
 
@@ -22,12 +23,20 @@ const start = () => {
 
   database.connect(config)
       .then((connection) => {
-        return repository.connect(connection)
+        return Promise.all([
+          movieRepo.connect(connection),
+          userRepo.connect(connection)
+        ])
       })
-      .then((repo) => {
+      .then(([repo, userRepo]) => {
         rep = repo
         console.log('Repository connected, starting server.')
-        return server.start({port: config.server.port, repo})
+        return server.start({
+          port: config.server.port,
+          secret: config.server.secret,
+          repo,
+          userRepo
+        })
       })
       .then((app) => {
         console.log(`Server started succesfully, running on port ${config.server.port}`)

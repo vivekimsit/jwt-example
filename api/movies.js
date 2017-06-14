@@ -1,8 +1,6 @@
 'use strict'
 
-const Status = {
-  OK: 200
-}
+const Status = require('http-status')
 
 module.exports = (app, options) => {
   const {repo} = options

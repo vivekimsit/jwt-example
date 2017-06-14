@@ -2,10 +2,10 @@
 
 let bookshelf = null
 
-const connect = (opts) => {
+const connect = (options) => {
   const knex = require('knex')({
     client: 'mysql',
-    connection: opts.dbSettings()
+    connection: options.dbSettings()
   })
   return new Promise((resolve, reject) => {
     try {
