@@ -1,16 +1,21 @@
 'use strict'
 
-const mysql = require('mysql')
+let bookshelf = null
 
 const connect = (opts) => {
+  const knex = require('knex')({
+    client: 'mysql',
+    connection: opts.dbSettings()
+  })
   return new Promise((resolve, reject) => {
-    const connection = mysql.createConnection(opts.dbSettings())
-    connection.connect((error) => {
-      if (error) {
-        return reject(error)
+    try {
+      if (!bookshelf) {
+        bookshelf = require('bookshelf')(knex)
       }
-      resolve(connection)
-    })
+      resolve(bookshelf)
+    } catch (err) {
+      reject(err)
+    }
   })
 }
 

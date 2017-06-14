@@ -2,7 +2,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
-const movieAPI = require('./movies')
+const movieAPI = require('./api/movies')
 
 const start = (options) => {
   return new Promise((resolve, reject) => {
